@@ -16,7 +16,7 @@ def reformat_text(input_text, style):
     Uses the LLM to reformat the provided text according to the selected style.
     """
     templates = {
-        "Professional": (
+        "professional": (
             "You are a professional editor. Please reformat the following text, "
             "ensuring that it has proper punctuation, capitalization, and spacing, proper grammar, "
             "and add some slight paraphrasing to make it more professional to meet book editorial standards, "
@@ -25,21 +25,21 @@ def reformat_text(input_text, style):
             "Text: {text}\n\n"
             "Reformatted text:"
         ),
-        "Casual": (
+        "casual": (
             "You are a friendly editor. Please reformat the following text in a casual tone, "
             "making it easy to read and understand while preserving its original meaning. "
             "Return only the reformatted text.\n\n"
             "Text: {text}\n\n"
             "Reformatted text:"
         ),
-        "Academic": (
+        "academic": (
             "You are an academic editor. Please reformat the following text in a formal academic style, "
             "ensuring proper punctuation, grammar, and a scholarly tone without significantly altering its original meaning. "
             "Return only the reformatted text.\n\n"
             "Text: {text}\n\n"
             "Reformatted text:"
         ),
-        "Nigerian": (
+        "nigerian": (
             "You are a creative editor who converts text into Nigerian Pidgin English with popular slangs. "
             "Please reformat the following text into lively, informal Nigerian Pidgin English, using well-known local expressions and slangs, "
             "while preserving the original meaning. "
@@ -47,7 +47,6 @@ def reformat_text(input_text, style):
             "Text: {text}\n\n"
             "Reformatted text:"
         )
-        
     }
     
     prompt_template = PromptTemplate(
