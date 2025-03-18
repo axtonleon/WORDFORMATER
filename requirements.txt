@@ -1,0 +1,6 @@
+flask
+openai
+langchain-core
+langchain-openai
+gunicorn
+

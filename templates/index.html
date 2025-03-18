@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Text Reformatter</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-r from-blue-50 to-blue-100 min-h-screen flex items-center justify-center">
+  <div class="w-full max-w-2xl p-6 bg-white rounded-lg shadow-lg">
+    <h1 class="text-4xl font-bold text-center text-gray-800 mb-6">Text Reformatter</h1>
+    <form action="/" method="POST" class="space-y-4">
+      <div>
+        <label for="input_text" class="block text-lg font-medium text-gray-700 mb-2">
+          Enter your text:
+        </label>
+        <textarea
+          id="input_text"
+          name="input_text"
+          rows="6"
+          class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+          placeholder="Type your text here..."
+        >{{ input_text }}</textarea>
+      </div>
+      <div>
+        <label for="style" class="block text-lg font-medium text-gray-700 mb-2">
+          Select Output Style:
+        </label>
+        <select id="style" name="style" class="w-full p-2 border border-gray-300 rounded-lg">
+          <option value="professional" {% if selected_style == "professional" %}selected{% endif %}>Professional</option>
+          <option value="casual" {% if selected_style == "casual" %}selected{% endif %}>Casual</option>
+          <option value="academic" {% if selected_style == "academic" %}selected{% endif %}>Academic</option>
+        </select>
+      </div>
+      <button
+        type="submit"
+        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition duration-150"
+      >
+        Reformat Text
+      </button>
+    </form>
+    {% if reformatted_text %}
+    <div class="mt-8">
+      <h2 class="text-2xl font-bold text-gray-800 mb-4">Reformatted Text:</h2>
+      <div class="relative">
+        <pre id="outputText" class="p-4 border border-gray-300 rounded-lg bg-gray-50 text-gray-800 whitespace-pre-wrap">{{ reformatted_text }}</pre>
+        <button
+          id="copyBtn"
+          class="absolute top-2 right-2 bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-md text-sm"
+        >
+          Copy
+        </button>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+  
+  <!-- JavaScript to handle copy functionality -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const copyBtn = document.getElementById("copyBtn");
+      if (copyBtn) {
+        copyBtn.addEventListener("click", function() {
+          const outputText = document.getElementById("outputText").innerText;
+          navigator.clipboard.writeText(outputText).then(() => {
+            copyBtn.innerText = "Copied!";
+            setTimeout(() => {
+              copyBtn.innerText = "Copy";
+            }, 2000);
+          }).catch(err => {
+            console.error("Failed to copy text: ", err);
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>
