@@ -1,15 +1,15 @@
 import os
 from flask import Flask, render_template, request
-import openai
+from dotenv import load_dotenv
 from langchain_core.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI
-import constants
+
+load_dotenv()
+
 
 app = Flask(__name__)
 
-# Set OpenAI API key
-os.environ["OPENAI_API_KEY"] = constants.APIKEY
-openai.api_key = constants.APIKEY
+#
 
 def reformat_text(input_text, style):
     """
