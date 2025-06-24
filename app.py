@@ -54,7 +54,7 @@ def reformat_text(input_text, style):
     )
     
     # Set temperature low for deterministic editing output
-    llm = ChatGoogleGenerativeAI(model_name="gemini-1.5-flash", temperature=0.0)
+    llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", temperature=0.0)
     
     # Use the new RunnableSequence syntax: prompt_template | llm
     result = (prompt_template | llm).invoke({"text": input_text})
