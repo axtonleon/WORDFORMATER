@@ -2,8 +2,7 @@ import os
 from flask import Flask, render_template, request
 from dotenv import load_dotenv
 from langchain_core.prompts import PromptTemplate
-from langchain_openai import ChatOpenAI
-
+from langchain_google_genai import ChatGoogleGenerativeAI
 load_dotenv()
 
 
@@ -55,7 +54,7 @@ def reformat_text(input_text, style):
     )
     
     # Set temperature low for deterministic editing output
-    llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0.0)
+    llm = ChatGoogleGenerativeAI(model_name="gemini-1.5-flash", temperature=0.0)
     
     # Use the new RunnableSequence syntax: prompt_template | llm
     result = (prompt_template | llm).invoke({"text": input_text})
