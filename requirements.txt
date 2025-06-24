@@ -3,4 +3,4 @@ openai
 langchain-core
 langchain_google_genai
 gunicorn
-
+python-dotenv
